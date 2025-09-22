@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import Header from './Header';
 import Sidebar from './Sidebar';
+import { useTheme } from '../context/ThemeContext';
 
 const Layout = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const { isDark } = useTheme();
+  const gridBg = isDark ? 'bg-grid-navy' : 'bg-grid-light';
 
   return (
-    <div className="flex h-screen">
+    <div className={`flex h-screen ${gridBg}`}>
       {/* Mobile sidebar overlay */}
       {sidebarOpen && (
         <div className="fixed inset-0 z-40 md:hidden">
@@ -23,9 +26,9 @@ const Layout = ({ children }) => {
       </div>
 
       {/* Main content */}
-      <div className="flex flex-1 flex-col overflow-hidden">
+      <div className={`flex flex-1 flex-col overflow-hidden ${gridBg}`}>
         <Header onMenuClick={() => setSidebarOpen(true)} />
-        <main className="flex-1 overflow-y-auto p-4 md:p-6 bg-gray-50">
+        <main className={`flex-1 overflow-y-auto p-4 md:p-6 ${gridBg}`}>
           <div className="mx-auto w-full max-w-7xl">{children}</div>
         </main>
       </div>

@@ -3,6 +3,7 @@
 // why :-  Reusable form input component.
 
 import React from "react";
+import { useTheme } from '../context/ThemeContext';
 
 const FormInput = ({
   type = "text",
@@ -18,11 +19,16 @@ const FormInput = ({
   className = "",
   ...props
 }) => {
+  const { isDark } = useTheme();
   const inputId = id || name || undefined;
+  const labelCls = isDark ? 'text-white' : 'text-gray-900';
+  const inputBase = isDark ? 'bg-slate-800/80 text-white placeholder-white/50 border-white/10' : 'bg-white text-gray-900 placeholder-gray-400 border-gray-300';
+  const helpCls = isDark ? 'text-white/60' : 'text-gray-500';
+  const errCls = isDark ? 'text-red-400' : 'text-red-600';
   return (
     <div className="w-full mb-4">
       {label && (
-        <label htmlFor={inputId} className="block text-sm font-medium text-gray-700 mb-1">
+        <label htmlFor={inputId} className={`block text-sm font-medium ${labelCls} mb-1`}>
           {label} {required && <span className="text-red-500">*</span>}
         </label>
       )}
@@ -34,13 +40,11 @@ const FormInput = ({
         value={value}
         onChange={onChange}
         required={required}
-        className={`w-full px-3 py-2 border rounded-md bg-white
-                    focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500
-                    ${error ? 'border-red-500' : 'border-gray-300'} ${className}`}
+        className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${inputBase} ${error ? (isDark ? 'border-red-500' : 'border-red-400') : ''} ${className}`}
         {...props}
       />
-      {helpText && !error && <p className="mt-1 text-xs text-gray-500">{helpText}</p>}
-      {error && <p className="mt-1 text-xs text-red-600">{error}</p>}
+      {helpText && !error && <p className={`mt-1 text-xs ${helpCls}`}>{helpText}</p>}
+      {error && <p className={`mt-1 text-xs ${errCls}`}>{error}</p>}
     </div>
   );
 };

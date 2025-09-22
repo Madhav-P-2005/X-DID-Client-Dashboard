@@ -2,8 +2,16 @@ import React, { useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import Layout from '../components/Layout';
 import PageHeader from '../components/PageHeader';
+import { useTheme } from '../context/ThemeContext';
 
 const Degrees = () => {
+  const { isDark } = useTheme();
+  const panelBg = isDark ? 'bg-slate-900/60' : 'bg-white/90';
+  const borderCls = isDark ? 'border-white/10' : 'border-gray-200';
+  const textPrimary = isDark ? 'text-white' : 'text-gray-900';
+  const textSecondary = isDark ? 'text-white/80' : 'text-gray-600';
+  const inputBase = isDark ? 'bg-slate-800/80 text-white placeholder-white/50 border-white/10' : 'bg-white text-gray-900 placeholder-gray-400 border-gray-300';
+  const hoverRow = isDark ? 'hover:bg-white/5' : 'hover:bg-gray-100';
   const [searchParams, setSearchParams] = useSearchParams();
   // Rich mock data for Step 1 (programs, batches, statuses)
   const mockDegrees = [
@@ -157,33 +165,33 @@ const Degrees = () => {
       <div>
         <PageHeader title="Issued Degrees" subtitle="Search, filter, and manage issued verifiable credentials" />
         {/* Filter Bar */}
-        <div className="bg-white p-4 md:p-6 rounded shadow mb-4">
+        <div className={`${panelBg} border ${borderCls} p-4 md:p-6 rounded mb-4`}>
           <div className="grid grid-cols-1 md:grid-cols-6 gap-3">
             <div className="md:col-span-2">
-              <label className="block text-sm font-medium text-gray-700 mb-1">Search</label>
+              <label className={`block text-sm font-medium ${textPrimary} mb-1`}>Search</label>
               <input
                 type="text"
                 placeholder="Name, email, or roll no"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                className="w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className={`w-full px-3 py-2 rounded-md border focus:outline-none focus:ring-2 focus:ring-emerald-500 ${inputBase}`}
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
-              <select value={status} onChange={(e) => setStatus(e.target.value)} className="w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <label className={`block text-sm font-medium ${textPrimary} mb-1`}>Status</label>
+              <select value={status} onChange={(e) => setStatus(e.target.value)} className={`w-full px-3 py-2 rounded-md border focus:outline-none focus:ring-2 focus:ring-emerald-500 ${inputBase}`}>
                 {['All', 'Issued', 'Pending', 'Failed'].map(s => (<option key={s}>{s}</option>))}
               </select>
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Program</label>
-              <select value={program} onChange={(e) => setProgram(e.target.value)} className="w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <label className={`block text-sm font-medium ${textPrimary} mb-1`}>Program</label>
+              <select value={program} onChange={(e) => setProgram(e.target.value)} className={`w-full px-3 py-2 rounded-md border focus:outline-none focus:ring-2 focus:ring-emerald-500 ${inputBase}`}>
                 {programs.map(p => (<option key={p} value={p}>{p}</option>))}
               </select>
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Batch</label>
-              <select value={batch} onChange={(e) => setBatch(e.target.value)} className="w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <label className={`block text-sm font-medium ${textPrimary} mb-1`}>Batch</label>
+              <select value={batch} onChange={(e) => setBatch(e.target.value)} className={`w-full px-3 py-2 rounded-md border focus:outline-none focus:ring-2 focus:ring-emerald-500 ${inputBase}`}>
                 {batches.map(b => {
                   if (b === 'All') return <option key="All">All</option>;
                   const [id, name] = b.split('::');
@@ -193,12 +201,12 @@ const Degrees = () => {
             </div>
             <div className="flex items-end gap-2">
               <div className="w-1/2">
-                <label className="block text-sm font-medium text-gray-700 mb-1">From</label>
-                <input type="date" value={fromDate} onChange={(e) => setFromDate(e.target.value)} className="w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                <label className={`block text-sm font-medium ${textPrimary} mb-1`}>From</label>
+                <input type="date" value={fromDate} onChange={(e) => setFromDate(e.target.value)} className={`w-full px-3 py-2 rounded-md border focus:outline-none focus:ring-2 focus:ring-emerald-500 ${inputBase}`} />
               </div>
               <div className="w-1/2">
-                <label className="block text-sm font-medium text-gray-700 mb-1">To</label>
-                <input type="date" value={toDate} onChange={(e) => setToDate(e.target.value)} className="w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                <label className={`block text-sm font-medium ${textPrimary} mb-1`}>To</label>
+                <input type="date" value={toDate} onChange={(e) => setToDate(e.target.value)} className={`w-full px-3 py-2 rounded-md border focus:outline-none focus:ring-2 focus:ring-emerald-500 ${inputBase}`} />
               </div>
             </div>
           </div>
@@ -206,13 +214,13 @@ const Degrees = () => {
           <div className="mt-3 flex items-center justify-between">
             <div className="flex items-center gap-2">
               {['BCA', 'BBA', 'B.Tech', 'MBA'].map((p) => (
-                <button key={p} onClick={() => setProgram(p)} className={`px-3 py-1.5 rounded-full border text-sm ${program === p ? 'bg-blue-600 text-white border-blue-600' : 'hover:bg-gray-50'}`}>
+                <button key={p} onClick={() => setProgram(p)} className={`px-3 py-1.5 rounded-full border text-sm ${program === p ? 'bg-emerald-500 text-white border-emerald-500' : isDark ? 'border-white/20 text-white hover:bg-white/10' : 'border-gray-300 text-gray-900 hover:bg-gray-100'}`}>
                   {p}
                 </button>
               ))}
             </div>
-            <label className="inline-flex items-center gap-2 text-sm">
-              <input type="checkbox" checked={groupByBatch} onChange={(e) => setGroupByBatch(e.target.checked)} />
+            <label className={`inline-flex items-center gap-2 text-sm ${textPrimary}`}>
+              <input type="checkbox" className="accent-emerald-500" checked={groupByBatch} onChange={(e) => setGroupByBatch(e.target.checked)} />
               Group by Batch
             </label>
           </div>
@@ -220,10 +228,10 @@ const Degrees = () => {
 
         {/* Degrees List */}
         {!groupByBatch ? (
-          <div className="bg-white p-4 md:p-6 rounded shadow overflow-x-auto">
+          <div className={`${panelBg} border ${borderCls} p-4 md:p-6 rounded overflow-x-auto`}>
             <table className="w-full min-w-full">
               <thead>
-                <tr className="border-b">
+                <tr className={`border-b ${isDark ? 'border-white/10' : 'border-gray-200'}`}>
                   {[
                     { key: 'name', label: 'Name' },
                     { key: 'email', label: 'Email' },
@@ -233,12 +241,10 @@ const Degrees = () => {
                     { key: 'date', label: 'Date' },
                     { key: 'batchName', label: 'Batch' },
                   ].map((col) => (
-                    <th key={col.key} className="text-left p-2 select-none">
+                    <th key={col.key} className={`text-left p-2 select-none ${textSecondary}`}>
                       <button onClick={() => handleSort(col.key)} className="inline-flex items-center gap-1 hover:underline">
                         {col.label}
-                        {sortBy === col.key && (
-                          <span className="text-xs text-gray-500">{sortDir === 'asc' ? '▲' : '▼'}</span>
-                        )}
+                        {sortBy === col.key && (<span className={`text-xs ${isDark ? 'text-white/60' : 'text-gray-500'}`}>{sortDir === 'asc' ? '▲' : '▼'}</span>)}
                       </button>
                     </th>
                   ))}
@@ -246,44 +252,44 @@ const Degrees = () => {
               </thead>
               <tbody>
                 {pageItems.map((d) => (
-                  <tr key={d.id} className="border-b hover:bg-gray-50 cursor-pointer" onClick={() => setSelected(d)}>
-                    <td className="p-2">{highlight(d.name)}</td>
-                    <td className="p-2">{highlight(d.email)}</td>
-                    <td className="p-2">{highlight(d.program)}</td>
-                    <td className="p-2">{highlight(d.rollNo)}</td>
-                    <td className="p-2">{highlight(d.status)}</td>
-                    <td className="p-2">{highlight(d.date)}</td>
-                    <td className="p-2">{highlight(d.batchName)}</td>
+                  <tr key={d.id} className={`border-b ${isDark ? 'border-white/10' : 'border-gray-200'} ${hoverRow} cursor-pointer`} onClick={() => setSelected(d)}>
+                    <td className={`p-2 ${isDark ? 'text-white/90' : 'text-gray-800'}`}>{highlight(d.name)}</td>
+                    <td className={`p-2 ${isDark ? 'text-white/90' : 'text-gray-800'}`}>{highlight(d.email)}</td>
+                    <td className={`p-2 ${isDark ? 'text-white/90' : 'text-gray-800'}`}>{highlight(d.program)}</td>
+                    <td className={`p-2 ${isDark ? 'text-white/90' : 'text-gray-800'}`}>{highlight(d.rollNo)}</td>
+                    <td className={`p-2 ${isDark ? 'text-white/90' : 'text-gray-800'}`}>{highlight(d.status)}</td>
+                    <td className={`p-2 ${isDark ? 'text-white/90' : 'text-gray-800'}`}>{highlight(d.date)}</td>
+                    <td className={`p-2 ${isDark ? 'text-white/90' : 'text-gray-800'}`}>{highlight(d.batchName)}</td>
                   </tr>
                 ))}
                 {pageItems.length === 0 && (
                   <tr>
-                    <td className="p-4 text-center text-gray-500" colSpan={7}>No degrees found for current filters.</td>
+                    <td className={`p-4 text-center ${isDark ? 'text-white/60' : 'text-gray-500'}`} colSpan={7}>No degrees found for current filters.</td>
                   </tr>
                 )}
               </tbody>
             </table>
 
             {/* Pagination Controls */}
-            <div className="mt-4 flex flex-col sm:flex-row items-center justify-between gap-3">
-              <div className="text-sm text-gray-600">
+            <div className={`mt-4 flex flex-col sm:flex-row items-center justify-between gap-3 ${textSecondary}`}>
+              <div className="text-sm">
                 Showing {total === 0 ? 0 : startIndex + 1}–{endIndex} of {total}
               </div>
               <div className="flex items-center gap-2">
-                <label className="text-sm text-gray-700">Rows per page</label>
-                <select value={pageSize} onChange={(e) => setPageSize(parseInt(e.target.value))} className="px-2 py-1 rounded border border-gray-300">
+                <label className="text-sm">Rows per page</label>
+                <select value={pageSize} onChange={(e) => setPageSize(parseInt(e.target.value))} className={`px-2 py-1 rounded border ${inputBase}`}>
                   {[10, 25, 50].map(n => (<option key={n} value={n}>{n}</option>))}
                 </select>
                 <button
                   onClick={() => setPage((p) => Math.max(1, p - 1))}
                   disabled={currentPage <= 1}
-                  className="px-3 py-1 rounded border border-gray-300 disabled:opacity-50"
+                  className={`px-3 py-1 rounded border ${isDark ? 'border-white/20' : 'border-gray-300'} disabled:opacity-50`}
                 >Prev</button>
-                <span className="text-sm text-gray-700">Page {currentPage} / {pageCount}</span>
+                <span className="text-sm">Page {currentPage} / {pageCount}</span>
                 <button
                   onClick={() => setPage((p) => Math.min(pageCount, p + 1))}
                   disabled={currentPage >= pageCount}
-                  className="px-3 py-1 rounded border border-gray-300 disabled:opacity-50"
+                  className={`px-3 py-1 rounded border ${isDark ? 'border-white/20' : 'border-gray-300'} disabled:opacity-50`}
                 >Next</button>
               </div>
             </div>
@@ -291,8 +297,8 @@ const Degrees = () => {
         ) : (
           <div className="space-y-4">
             <div className="flex items-center justify-end gap-2">
-              <button onClick={expandAll} className="px-3 py-1.5 rounded border border-gray-300 text-sm hover:bg-gray-50">Expand All</button>
-              <button onClick={collapseAll} className="px-3 py-1.5 rounded border border-gray-300 text-sm hover:bg-gray-50">Collapse All</button>
+              <button onClick={expandAll} className={`px-3 py-1.5 rounded border text-sm ${isDark ? 'border-white/20 text-white hover:bg-white/10' : 'border-gray-300 text-gray-900 hover:bg-gray-100'}`}>Expand All</button>
+              <button onClick={collapseAll} className={`px-3 py-1.5 rounded border text-sm ${isDark ? 'border-white/20 text-white hover:bg-white/10' : 'border-gray-300 text-gray-900 hover:bg-gray-100'}`}>Collapse All</button>
             </div>
 
             {batchEntries.map(([id, name]) => {
@@ -300,41 +306,41 @@ const Degrees = () => {
               const sum = batchSummaries.get(id) || { total: items.length, Issued: 0, Pending: 0, Failed: 0 };
               const isOpen = expandedBatches.has(id);
               return (
-                <div key={id} className="bg-white rounded shadow">
+                <div key={id} className={`${panelBg} border ${borderCls} rounded`}>
                   <button onClick={() => toggleBatch(id)} className="w-full text-left px-4 py-3 flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                      <span className="inline-block w-3 text-gray-500">{isOpen ? '▾' : '▸'}</span>
-                      <h3 className="text-base md:text-lg font-semibold">{highlight(name)} <span className="text-gray-500 text-sm">({highlight(id)})</span></h3>
+                      <span className={`inline-block w-3 ${isDark ? 'text-white/60' : 'text-gray-500'}`}>{isOpen ? '▾' : '▸'}</span>
+                      <h3 className={`text-base md:text-lg font-semibold ${textPrimary}`}>{highlight(name)} <span className={`${isDark ? 'text-white/60' : 'text-gray-500'} text-sm`}>({highlight(id)})</span></h3>
                     </div>
-                    <div className="flex items-center gap-3 text-xs md:text-sm text-gray-600">
+                    <div className={`flex items-center gap-3 text-xs md:text-sm ${textSecondary}`}>
                       <span>Total: {sum.total}</span>
-                      <span className="text-green-700">Issued: {sum.Issued}</span>
-                      <span className="text-yellow-700">Pending: {sum.Pending}</span>
-                      <span className="text-red-700">Failed: {sum.Failed}</span>
+                      <span className="text-emerald-400">Issued: {sum.Issued}</span>
+                      <span className={`${isDark ? 'text-yellow-300' : 'text-yellow-600'}`}>Pending: {sum.Pending}</span>
+                      <span className={`${isDark ? 'text-red-400' : 'text-red-600'}`}>Failed: {sum.Failed}</span>
                     </div>
                   </button>
                   {isOpen && (
                     <div className="p-4 md:p-6 overflow-x-auto">
                       <table className="w-full min-w-full">
                         <thead>
-                          <tr className="border-b">
-                            <th className="text-left p-2">Name</th>
-                            <th className="text-left p-2">Email</th>
-                            <th className="text-left p-2">Program</th>
-                            <th className="text-left p-2">Roll No</th>
-                            <th className="text-left p-2">Status</th>
-                            <th className="text-left p-2">Date</th>
+                          <tr className={`border-b ${isDark ? 'border-white/10' : 'border-gray-200'}`}>
+                            <th className={`text-left p-2 ${textSecondary}`}>Name</th>
+                            <th className={`text-left p-2 ${textSecondary}`}>Email</th>
+                            <th className={`text-left p-2 ${textSecondary}`}>Program</th>
+                            <th className={`text-left p-2 ${textSecondary}`}>Roll No</th>
+                            <th className={`text-left p-2 ${textSecondary}`}>Status</th>
+                            <th className={`text-left p-2 ${textSecondary}`}>Date</th>
                           </tr>
                         </thead>
                         <tbody>
                           {items.map((d) => (
-                            <tr key={d.id} className="border-b hover:bg-gray-50 cursor-pointer" onClick={() => setSelected(d)}>
-                              <td className="p-2">{highlight(d.name)}</td>
-                              <td className="p-2">{highlight(d.email)}</td>
-                              <td className="p-2">{highlight(d.program)}</td>
-                              <td className="p-2">{highlight(d.rollNo)}</td>
-                              <td className="p-2">{highlight(d.status)}</td>
-                              <td className="p-2">{highlight(d.date)}</td>
+                            <tr key={d.id} className={`border-b ${isDark ? 'border-white/10' : 'border-gray-200'} ${hoverRow} cursor-pointer`} onClick={() => setSelected(d)}>
+                              <td className={`p-2 ${isDark ? 'text-white/90' : 'text-gray-800'}`}>{highlight(d.name)}</td>
+                              <td className={`p-2 ${isDark ? 'text-white/90' : 'text-gray-800'}`}>{highlight(d.email)}</td>
+                              <td className={`p-2 ${isDark ? 'text-white/90' : 'text-gray-800'}`}>{highlight(d.program)}</td>
+                              <td className={`p-2 ${isDark ? 'text-white/90' : 'text-gray-800'}`}>{highlight(d.rollNo)}</td>
+                              <td className={`p-2 ${isDark ? 'text-white/90' : 'text-gray-800'}`}>{highlight(d.status)}</td>
+                              <td className={`p-2 ${isDark ? 'text-white/90' : 'text-gray-800'}`}>{highlight(d.date)}</td>
                             </tr>
                           ))}
                         </tbody>
@@ -345,7 +351,7 @@ const Degrees = () => {
               );
             })}
             {sorted.length === 0 && (
-              <div className="bg-white p-6 rounded shadow text-center text-gray-500">No degrees found for current filters.</div>
+              <div className={`${panelBg} border ${borderCls} p-6 rounded text-center ${isDark ? 'text-white/60' : 'text-gray-500'}`}>No degrees found for current filters.</div>
             )}
           </div>
         )}
