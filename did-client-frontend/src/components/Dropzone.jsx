@@ -35,8 +35,8 @@ const Dropzone = ({ onFiles, className = '' }) => {
       className={`border-2 border-dashed rounded-md p-6 text-center transition-colors ${
         isDragging
           ? isDark
-            ? 'border-blue-400 bg-slate-800/50'
-            : 'border-blue-500 bg-blue-50'
+            ? 'border-emerald-400 bg-slate-800/50'
+            : 'border-emerald-500 bg-emerald-50'
           : isDark
           ? 'border-white/20'
           : 'border-gray-300'
@@ -45,7 +45,7 @@ const Dropzone = ({ onFiles, className = '' }) => {
       <p className={`mb-3 ${isDark ? 'text-white/80' : 'text-gray-700'}`}>Drag and drop CSV/Excel files here</p>
       <p className={`mb-4 text-sm ${isDark ? 'text-white/60' : 'text-gray-500'}`}>or</p>
       <label className="inline-block">
-        <span className="px-4 py-2 bg-blue-600 text-white rounded-md cursor-pointer hover:bg-blue-700">Browse Files</span>
+        <span className="px-4 py-2 bg-emerald-500 text-white rounded-md cursor-pointer hover:bg-emerald-600">Browse Files</span>
         <input type="file" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" onChange={handleChange} className="hidden" />
       </label>
     </div>

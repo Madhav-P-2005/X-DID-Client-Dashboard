@@ -6,7 +6,9 @@ import { useTheme } from '../context/ThemeContext';
 const Layout = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const { isDark } = useTheme();
-  const gridBg = isDark ? 'bg-grid-navy' : 'bg-grid-light';
+  const gridBg = isDark
+    ? 'bg-[#0b1f3a] [background-image:linear-gradient(to_right,rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.06)_1px,transparent_1px)] [background-size:48px_48px]'
+    : 'bg-[#f6f8fb] [background-image:linear-gradient(to_right,rgba(0,0,0,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.06)_1px,transparent_1px)] [background-size:48px_48px]';
 
   return (
     <div className={`flex h-screen ${gridBg}`}>

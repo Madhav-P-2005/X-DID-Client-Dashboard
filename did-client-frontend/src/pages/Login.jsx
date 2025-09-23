@@ -24,7 +24,9 @@ const Login = () => {
   const { login } = useAuthContext();
   const { isDark, toggleTheme } = useTheme();
 
-  const gridBg = isDark ? 'bg-grid-navy' : 'bg-grid-light';
+  const gridBg = isDark
+    ? 'bg-[#0b1f3a] [background-image:linear-gradient(to_right,rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.06)_1px,transparent_1px)] [background-size:48px_48px]'
+    : 'bg-[#f6f8fb] [background-image:linear-gradient(to_right,rgba(0,0,0,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.06)_1px,transparent_1px)] [background-size:48px_48px]';
   const borderCls = isDark ? 'border-white/10' : 'border-gray-200';
   const textPrimary = isDark ? 'text-white' : 'text-gray-900';
   const textSecondary = isDark ? 'text-white/80' : 'text-gray-600';
