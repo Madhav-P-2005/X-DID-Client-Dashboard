@@ -9,6 +9,7 @@ import Button from '../components/Button';
 import { useAuthContext } from '../context/AuthContext';
 import SecureLogo from '../assets/SecureDApp.png';
 import { useTheme } from '../context/ThemeContext';
+import HighlightBanner from '../components/HighlightBanner';
 
 const Login = () => {
   const { register, handleSubmit, formState: { errors }, watch, setValue } = useForm({
@@ -91,7 +92,7 @@ const Login = () => {
       {/* Top brand header (transparent over grid) */}
       <header className={`w-full border-b ${borderCls} bg-transparent`}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
-          <div className={`text-2xl font-semibold tracking-tight ${textPrimary}`}>DID Client Dashboard</div>
+          <div className={`text-2xl font-semibold tracking-tight ${textPrimary}`}>X-DiD Client Dashboard</div>
           <div className="flex items-center gap-2">
             <button
               type="button"
@@ -129,6 +130,11 @@ const Login = () => {
 
       {/* Centered content */}
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 py-8 md:py-12">
+        <div className="mb-4">
+          <HighlightBanner>
+            Grant your graduates a degree that's as unchangeable as their legacy. With X-DiD, their credentials are immutable.
+          </HighlightBanner>
+        </div>
         <div className={`rounded-2xl ${panelBg} border ${borderCls} shadow-sm p-4 sm:p-6 md:p-8`}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Left panel */}

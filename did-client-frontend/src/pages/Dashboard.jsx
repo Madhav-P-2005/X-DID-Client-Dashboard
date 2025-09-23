@@ -13,7 +13,7 @@ const Dashboard = () => {
   return (
     <Layout>
       <div>
-        <PageHeader title="Dashboard Overview" subtitle="Key metrics and recent activity across the DID issuance workflow" />
+        <PageHeader title="Dashboard Overview" subtitle="Key metrics and recent activity across the X-DiD issuance workflow" />
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
           <div className={`${panelBg} border ${borderCls} p-4 md:p-6 rounded`}>
             <h3 className={`text-lg font-semibold ${textPrimary}`}>Total Degrees Issued</h3>

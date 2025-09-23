@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import Layout from '../components/Layout';
 import PageHeader from '../components/PageHeader';
 import { useTheme } from '../context/ThemeContext';
+import HighlightBanner from '../components/HighlightBanner';
 
 const Degrees = () => {
   const { isDark } = useTheme();
@@ -164,6 +165,11 @@ const Degrees = () => {
     <Layout>
       <div>
         <PageHeader title="Issued Degrees" subtitle="Search, filter, and manage issued verifiable credentials" />
+        <div className="mt-4 mb-4">
+          <HighlightBanner>
+            Empower your students with the ultimate control. X-DiD ensures personal degree security, putting their achievements firmly in their hands.
+          </HighlightBanner>
+        </div>
         {/* Filter Bar */}
         <div className={`${panelBg} border ${borderCls} p-4 md:p-6 rounded mb-4`}>
           <div className="grid grid-cols-1 md:grid-cols-6 gap-3">

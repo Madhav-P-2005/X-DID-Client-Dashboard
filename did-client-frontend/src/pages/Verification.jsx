@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Layout from '../components/Layout';
 import Button from '../components/Button';
 import { useTheme } from '../context/ThemeContext';
+import HighlightBanner from '../components/HighlightBanner';
 
 const Verification = () => {
   const [vcHash, setVcHash] = useState('');
@@ -18,13 +19,18 @@ const Verification = () => {
 
   const handleVerify = () => {
     // Mock verification
-    setResult(vcHash ? 'Verification Successful: DID is valid.' : 'Invalid hash.');
+    setResult(vcHash ? 'Verification Successful: X-DiD is valid.' : 'Invalid hash.');
   };
 
   return (
     <Layout>
       <div>
-        <h2 className={`text-2xl md:text-3xl font-bold mb-6 ${textPrimary}`}>Degree Verification</h2>
+        <h2 className={`text-2xl md:text-3xl font-bold mb-4 ${textPrimary}`}>Degree Verification</h2>
+        <div className="mb-4">
+          <HighlightBanner>
+            Your institution's reputation is secured. We provide next-generation data protection, backed by our SecureDApp technology.
+          </HighlightBanner>
+        </div>
         <div className={`${panelBg} border ${borderCls} p-4 md:p-6 rounded`}>
           <p className={`mb-4 ${textSecondary}`}>Enter the VC hash or JSON to verify the degree's authenticity.</p>
           <input

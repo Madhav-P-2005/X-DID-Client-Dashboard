@@ -4,6 +4,7 @@ import Button from '../components/Button';
 import PageHeader from '../components/PageHeader';
 import Dropzone from '../components/Dropzone';
 import { useTheme } from '../context/ThemeContext';
+import HighlightBanner from '../components/HighlightBanner';
 
 const Templates = () => {
   const { isDark } = useTheme();
@@ -22,6 +23,11 @@ const Templates = () => {
           subtitle="Download the standardized CSV and upload filled files for preview."
           actions={<Button className="sm:w-auto bg-emerald-500 hover:bg-emerald-600 focus:ring-emerald-500">Download Template</Button>}
         />
+        <div className="mt-4 mb-4">
+          <HighlightBanner>
+            While others wait, your graduates will own the future of credentialing. Don't be left behind in the race for verifiable identity.
+          </HighlightBanner>
+        </div>
         <div className={`${panelBg} border ${borderCls} p-4 md:p-6 rounded`}>
           <h3 className={`text-lg md:text-xl font-semibold mb-4 ${textPrimary}`}>Upload Filled Template</h3>
           <Dropzone onFiles={handleFiles} />

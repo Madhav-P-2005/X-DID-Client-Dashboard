@@ -59,7 +59,7 @@ const Register = () => {
 
       <div className="relative z-10 mx-auto w-full max-w-5xl px-6 py-12 md:py-16">
         <div className="mb-8 text-center">
-          <h2 className={`text-3xl font-extrabold tracking-tight ${textPrimary}`}>Get started with X-DID Dashboard</h2>
+          <h2 className={`text-3xl font-extrabold tracking-tight ${textPrimary}`}>Get started with X-DiD Dashboard</h2>
           <p className={`mt-1 ${textSecondary} text-sm`}>For Colleges and Universities to issue and verify degrees as Verifiable Credentials</p>
         </div>
 
@@ -209,11 +209,11 @@ const Register = () => {
           <div className={`rounded-2xl ${panelBg} border ${borderCls} shadow-sm p-6`}>
             <h3 className={`text-lg font-semibold mb-3 ${textPrimary}`}>Why institutions choose us</h3>
             <ul className={`text-sm ${textSecondary} space-y-2 list-disc list-inside`}>
-              <li>Standards-compliant DIDs and Verifiable Credentials (W3C).</li>
+              <li>Standards-compliant X-DiD and Verifiable Credentials (W3C).</li>
               <li>Bulk issuance workflow with CSV/Excel templates.</li>
               <li>IPFS-backed storage for VC JSON and PDF artifacts.</li>
               <li>Powerful search with filters and audit logs.</li>
-              <li>Public verification portal with DID resolution.</li>
+              <li>Public verification portal with X-DiD resolution.</li>
               <li>Secure by design — built with SecureDApp expertise.</li>
             </ul>
             <div className={`mt-4 text-sm ${textSecondary}`}>

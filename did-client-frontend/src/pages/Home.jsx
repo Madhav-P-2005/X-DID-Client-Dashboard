@@ -21,7 +21,7 @@ const Home = () => {
           <div className={`rounded-2xl ${panelBg} border ${borderCls} p-6 md:p-10`}> 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
               <div>
-                <h1 className={`text-3xl md:text-4xl font-extrabold tracking-tight ${textPrimary}`}>Issue and Verify Degrees with DIDs</h1>
+                <h1 className={`text-3xl md:text-4xl font-extrabold tracking-tight ${textPrimary}`}>Issue and Verify Degrees with X-DiD</h1>
                 <p className={`mt-3 text-base md:text-lg ${textSecondary}`}>
                   A clean, secure dashboard for institutions to issue Verifiable Credentials and
                   an easy portal to verify authenticity.
@@ -38,11 +38,11 @@ const Home = () => {
               <div className="relative">
                 <div className={`rounded-xl ${panelBg} border ${borderCls} p-4 h-full`}> 
                   <ul className={`text-sm md:text-base space-y-2 ${textSecondary}`}>
-                    <li>• Standards-compliant DIDs and Verifiable Credentials (W3C)</li>
+                    <li>• Standards-compliant X-DiD and Verifiable Credentials (W3C)</li>
                     <li>• Bulk issuance via CSV/Excel templates</li>
                     <li>• IPFS-backed storage for VC JSON and PDFs</li>
                     <li>• Powerful search, filters, and audit logs</li>
-                    <li>• Public verification portal with DID resolution</li>
+                    <li>• Public verification portal with X-DiD resolution</li>
                   </ul>
                 </div>
               </div>
@@ -53,7 +53,7 @@ const Home = () => {
       <footer className="py-6">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <p className={`text-center text-sm ${textSecondary}`}>
-            © {new Date().getFullYear()} X-DID Dashboard. All rights reserved.
+            © {new Date().getFullYear()} X-DiD Dashboard. All rights reserved.
           </p>
         </div>
       </footer>

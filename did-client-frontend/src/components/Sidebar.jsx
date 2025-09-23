@@ -17,7 +17,7 @@ const Sidebar = ({ onClose }) => {
   return (
     <div className={`w-64 min-h-screen p-4 bg-transparent border-r ${isDark ? 'border-white/10 text-white' : 'border-gray-200 text-gray-900'}`}>
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-xl font-bold">X - DID Dashboard</h2>
+        <h2 className="text-xl font-bold">X-DiD Client Dashboard</h2>
         {onClose && (
           <button onClick={onClose} className="md:hidden">
             <XMarkIcon className={`w-6 h-6 ${isDark ? 'text-white' : 'text-gray-900'}`} />
